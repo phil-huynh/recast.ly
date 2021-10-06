@@ -1,24 +1,21 @@
 //import App from './App.js';
 
-var VideoListEntry = (props) => (
-  <div>
-    console.log(props)
-    {props.map((video) => {
-      return (
-        <div className="video-list-entry media">
-          <div className="media-left media-middle">
-            <img className="media-object" src="https://i.ytimg.com/vi/1w8Z0UOXVaY/default.jpg" alt="" />
-          </div>
-          <div className="media-body">
-            <div classname="video-list-entry-thumbnail">{video.snippet.thumbnails.default}</div>
-            <div className="video-list-entry-title">{video.snippet.title}</div>
-            <div className="video-list-entry-detail">{video.snippet.description}</div>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-);
+var VideoListEntry = ({video, handleVideoListClick}) => {
+
+  return (
+    <div className="video-list-entry media">
+      <div className="media-left media-middle">
+        <img className="media-object" src={video.snippet.thumbnails.default.url} alt="" />
+      </div>
+      <div className="media-body">
+        <div className="video-list-entry-title"
+          onClick={() => { handleVideoListClick(video); }}
+        >{video.snippet.title}</div>
+        <div className="video-list-entry-detail">{video.snippet.description}</div>
+      </div>
+    </div>
+  );
+};
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
